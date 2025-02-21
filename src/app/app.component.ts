@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './features/menu/menu.component';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet , MenuComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'SuperAngular';

@@ -1,8 +1,7 @@
-import { HttpClient, HttpClientModule, HttpHandler, provideHttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule,FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BookService } from '../../service/book.service';
-import { Book } from '../../model/book.model';
+import { BookService } from '../../core/service/api/book.service';
+import { Book } from '../../shared/models/book.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,7 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.css'] ,
   standalone:true,
-  imports: [ReactiveFormsModule,HttpClientModule,CommonModule],
+  imports: [ReactiveFormsModule,CommonModule],
   providers:[BookService]
   
 })
@@ -35,7 +34,7 @@ export class BookComponent implements OnInit {
 
   onSubmit(): void {
     if (this.bookForm.valid) {
-     this.bookService.addBook(this.bookForm.value).subscribe(() => {
+     this.bookService.createBook(this.bookForm.value).subscribe(() => {
        this.loadBooks();
        this.bookForm.reset();
      });
