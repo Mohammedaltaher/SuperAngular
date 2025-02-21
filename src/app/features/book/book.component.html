@@ -1,14 +1,22 @@
 <div class="container">
-    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-      <label>Name:</label>
-      <input formControlName="name" placeholder="Enter book name" />
-      <label>Name (Arabic):</label>
-      <input formControlName="nameAr" placeholder="Enter Arabic name" />
-      <button type="submit" [disabled]="bookForm.invalid">Add Book</button>
-    </form>
-  
-    <h3>Book List</h3>
-    <ul>
-      <li *ngFor="let book of books">{{ book.name }} - {{ book.nameAr }}</li>
-    </ul>
-  </div>
+  <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter book name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Name (Arabic)</mat-label>
+      <input matInput formControlName="nameAr" placeholder="Enter Arabic name" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="bookForm.invalid">Add Book</button>
+  </form>
+
+  <h3>Book List</h3>
+  <mat-list>
+    <mat-list-item *ngFor="let book of books">
+      {{ book.name }} - {{ book.nameAr }}
+    </mat-list-item>
+  </mat-list>
+</div>

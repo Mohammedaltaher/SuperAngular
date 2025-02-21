@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule,FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookService } from '../../core/service/api/book.service';
 import { Book } from '../../shared/models/book.model';
 import { CommonModule } from '@angular/common';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
-  styleUrls: ['./book.component.css'] ,
-  standalone:true,
-  imports: [ReactiveFormsModule,CommonModule],
-  providers:[BookService]
-  
+  styleUrls: ['./book.component.css'],
+  standalone: true,
+  imports: [ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatListModule,
+    CommonModule,
+  ],
+  providers: [BookService]
+
 })
 export class BookComponent implements OnInit {
   books: Book[] = [];
@@ -29,15 +36,15 @@ export class BookComponent implements OnInit {
   }
 
   loadBooks(): void {
-    this.bookService.getBooks(1,10,"Name").subscribe((data) => (this.books = data.success));
+    this.bookService.getBooks(1, 10, "Name").subscribe((data) => (this.books = data.success));
   }
 
   onSubmit(): void {
     if (this.bookForm.valid) {
-     this.bookService.createBook(this.bookForm.value).subscribe(() => {
-       this.loadBooks();
-       this.bookForm.reset();
-     });
+      this.bookService.createBook(this.bookForm.value).subscribe(() => {
+        this.loadBooks();
+        this.bookForm.reset();
+      });
     }
   }
 }
