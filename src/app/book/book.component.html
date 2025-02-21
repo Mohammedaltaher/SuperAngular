@@ -1,0 +1,14 @@
+<div class="container">
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <label>Name:</label>
+      <input formControlName="name" placeholder="Enter book name" />
+      <label>Name (Arabic):</label>
+      <input formControlName="nameAr" placeholder="Enter Arabic name" />
+      <button type="submit" [disabled]="bookForm.invalid">Add Book</button>
+    </form>
+  
+    <h3>Book List</h3>
+    <ul>
+      <li *ngFor="let book of books">{{ book.name }} - {{ book.nameAr }}</li>
+    </ul>
+  </div>
